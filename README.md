@@ -23,6 +23,9 @@ The dataset in question, Credit Approval, included a good selection of features 
 ### Analysis Question
 This analysis will focus on predicting whether someone will be approved or not approved based on a set of testing data. In other words, the dataset in question will be trained on some fraction of the initial dataset, and evaluated against a smaller testing portion of the initial dataset.
 
+Specifically, our analysis prediction question is:
+- "Given features about a credit card applicant, will the customer be approved for a credit card?"
+
 This section is not yet complete
 
 ### Report
