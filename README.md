@@ -28,5 +28,12 @@ This section is not yet complete
 ### Report
 The final report will be linked here once the project is completed.
 
+## Usage
+
+- Explain how the EDA portion is completed without automated scripting
+
+## Dependencies
+
+- Dependencies will be listed here
 ## Licenses
 The Credit Approval materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
