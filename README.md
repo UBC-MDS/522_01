@@ -21,6 +21,12 @@ The project included the following major deliverables:
 The dataset in question, Credit Approval, included a good selection of features upon which to build a simple automated machine learning and statistical exercise.
 
 ### Analysis Question
-This analysis will focus on predicting 
+This analysis will focus on predicting whether someone will be approved or not approved based on a set of testing data. In other words, the dataset in question will be trained on some fraction of the initial dataset, and evaluated against a smaller testing portion of the initial dataset.
+
+This section is not yet complete
+
+### Report
+The final report will be linked here once the project is completed.
 
 ## Licenses
+The Credit Approval materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
