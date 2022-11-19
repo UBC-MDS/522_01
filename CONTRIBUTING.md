@@ -1,7 +1,8 @@
-# Contributing to the Students Exam Performance Predictor project
+# Contributing to the Credit Approval Prediction
 
-This outlines how to improve student scores on each test on Students Exam Performance Predictor project. 
+This outlines are indicated to know the credit card approving factors based on our dataset.
 
+There is also a strict no meanness rule. At every step, please be kind and inclusive, even if people are asking not-so-informed questions.
 
 ### Prerequisites
 
@@ -14,6 +15,19 @@ bug, create an associated issue and illustrate the bug with a minimal
 
 *  We recommend that you create a Git branch for each pull request (PR).  
 *  New code should follow the tidyverse [style guide](http://style.tidyverse.org) or PEP8 [style guide](https://www.python.org/dev/peps/pep-0008/).
+*  Pull requests should be reviewed by Friday end of day.
+*  Any revisions should be communicated via GitHub issue or Slack (for urgent updates/notification).
+
+### Final review and submission
+*  The proof-reader will review the work on Saturday and ensure that the final version is ready for submission and create the required version tag.
+*  Submit by Saturday at 6:00 pm.
+
+### Breach of Contract
+
+*   a written Slack notice that outlines the violation of the team contract and a reminder of the team contract conditions.
+*   a meeting to discuss the behaviour and write an agreement to follow the team contract is required by the member.
+*   to reach out to the lab instructor or TAs of the issues with the teammate
+
 
 ### Code of Conduct
 
