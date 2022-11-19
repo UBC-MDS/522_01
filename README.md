@@ -37,7 +37,7 @@ The EDA generated the following conclusions about the dataset:
 
 ## Analysis Question
 
-This analysis will focus on predicting whether a credit card applicant will be approved or not approved based on a set of features describing that applicant. The dataset in question will be trained on some fraction of the initial dataset, and evaluated against a smaller testing portion of the initial dataset.
+This analysis will focus on predicting whether a credit card applicant will be approved or not approved based on a set of features describing that applicant. The dataset in question will be trained on the train portion of the initial dataset (defined during EDA phase), and evaluated against a smaller testing portion of the initial dataset.
 
 Specifically, our analysis prediction question is: 
 
