@@ -33,10 +33,24 @@ The final report will be linked here once the project is completed.
 
 ## Usage
 
-- Explain how the EDA portion is completed without automated scripting
+We used the dataset that comes from the UCI dataset. Here is the exact dataset [url](https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data).
 
+In order to replicate this analysis, you first need to clone this repo, then running the following code in your terminal:
+```
+  python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_file="crx.csv"
+```
 ## Dependencies
 
-- Dependencies will be listed here
+  - ipykernel
+  - ipython>=7.15
+  - vega_datasets
+  - altair_saver
+  - selenium<4.3.0
+  - pandas<1.5
+  - pip
+  - docopt=0.6.2
+  - requests=2.22.0
+  - feather-format=0.4.0
+  
 ## Licenses
 The Credit Approval materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
