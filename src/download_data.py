@@ -1,25 +1,36 @@
-"""Downloads data csv data from the web to a local filepath as a csv.
-Usage: download_data.py --url=<url> --out_file=<out_file> 
- 
+# author: Daniel Merigo
+# date 2022-11-18
+# based on the script download_data.py by Tiffany Timbers
+
+"""Takes a url and downloads the data from the web as a csv in a local filepath, 
+you can supply the filename and extension or leave the default 'crx.csv' by ommiting the filename argument
+
+Usage: data_download.py --url=<url> --out_path=<out_path> [--filename=<filename>]
+
 Options:
---url=<url>             URL from where to download the data (must be in standard csv format)
---out_file=<out_file>   Path (including filename) of where to locally write the file
+--url=<url>             Url for the csv file to download (must be in standard csv format)       (required)
+--out_path=<out_path>   Path (not the filename) where the file will be downloaded and saved     (required)
+—-[filename=<filename>]	Name of the output file with extension                                  (optional)
 """
 
 import os
 import pandas as pd
 from docopt import docopt
 
-opt = docopt(__doc__)
+ins = docopt(__doc__)
 
-def main(url, out_file):
+def main(url, out_path, filename=None):
     data = pd.read_csv(url, header=None)
+    if filename != None :
+        name = filename
+    else:
+        name = 'crx.csv'
+    out_file = out_path + '/' + name
     try:
         data.to_csv(out_file, index=False)
     except:
         os.makedirs(os.path.dirname(out_file))
         data.to_csv(out_file, index=False)
 
-
-if __name__ == "__main__":
-    main(opt["--url"], opt["--out_file"])
+if __name__ == '__main__':
+    main(ins['--url'], ins['--out_path'], ins['--filename'])
