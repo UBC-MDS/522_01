@@ -24,7 +24,7 @@ We will create a welcoming and inclusive environment through:
 - Ensuring everyone feels included and free to express their views
 - Encouraging and accepting constructive feedback
 - Being respectful of team member personal circumstances and priorities
-- Discouraging discriminatory, sexual, or racial language
+- Discouraging discriminatory, sexual, or racist language
 - Avoid offensive or insulting comments
 
 
