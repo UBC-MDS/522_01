@@ -7,7 +7,7 @@
 
 ### Governing Principles
 
-- We will work in a collaborative and respectful manned where everyone's views are sought and respected.
+- We will work in a collaborative and respectful manner where everyone's views are sought and respected.
 - We strive for excellence in our work and will hold each other to high standards with respect to ideas and contributions.
 - We will openly discuss results and problems and share knowledge to the team's benefit.
 
