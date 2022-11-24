@@ -35,12 +35,12 @@ def main(input, out_dir):
     df = df.replace('?', np.nan)
     train_df, test_df = train_test_split(df, test_size=0.2, random_state=522)
     try:
-        train_df.to_csv(out_dir+ 'train_df.csv')
-        test_df.to_csv(out_dir+ 'test_df.csv')
+        train_df.to_csv(out_dir+ '/train_df.csv')
+        test_df.to_csv(out_dir+ '/test_df.csv')
     except:
         os.makedirs(out_dir)
-        train_df.to_csv(out_dir+ 'train_df.csv')
-        test_df.to_csv(out_dir+ 'test_df.csv')
+        train_df.to_csv(out_dir+ '/train_df.csv')
+        test_df.to_csv(out_dir+ '/test_df.csv')
 
 
 
