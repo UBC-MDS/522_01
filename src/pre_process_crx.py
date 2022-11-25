@@ -33,6 +33,7 @@ def main(input, out_dir):
     """
     df = pd.read_csv(input, encoding="utf-8")
     df = df.replace('?', np.nan)
+    df[['A2', 'A14']] = df[['A2', 'A14']].astype(float)
     train_df, test_df = train_test_split(df, test_size=0.2, random_state=522)
     try:
         train_df.to_csv(out_dir+ '/train_df.csv')
