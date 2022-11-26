@@ -21,7 +21,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.impute import SimpleImputer
 from sklearn.compose import make_column_transformer
 from docopt import docopt
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
+from sklearn.svm import SVC
+from sklearn.dummy import DummyClassifier
+from sklearn.model_selection import cross_validate
 import pickle
 
 
@@ -31,7 +34,7 @@ def main(train_data, out_dir):
 
     train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
     X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
-    
+
     #fill missing value with most frequent value of that column for categorical; mean value for numerical 
     cat_imputer = SimpleImputer(strategy='most_frequent', fill_value=np.nan)
     num_imputer = SimpleImputer(strategy='mean', fill_value= np.nan)
@@ -56,9 +59,32 @@ def main(train_data, out_dir):
         (cat_transformer_nonbi, categorical_features_miss),
         (OneHotEncoder(sparse=False, handle_unknown= 'ignore'), categorical_features_nomi)
     )
+    # creating score table, by using default R^2 score
+    cross_val_results= {}
+    #dummy classifier as a baseline
+    dum_pipe = make_pipeline(preprocessor, DummyClassifier())
+    cross_val_results['dummy'] = pd.DataFrame(cross_validate(dum_pipe, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
 
-    #logistic regression model with default hyperparameter is the best model in this case, details can see src/fit_credit_card_model.ipynb
+    #logistic regression model
     logreg = make_pipeline(preprocessor, LogisticRegression(random_state=522))
+    cross_val_results['logreg'] = pd.DataFrame(cross_validate(logreg, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
+
+    #SVC model
+    svc_pipe = make_pipeline(preprocessor, SVC(random_state=522))
+    cross_val_results['svc'] = pd.DataFrame(cross_validate(svc_pipe, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
+
+    #finding the best hyperparameter for svc to see if it will be better than logistic regression after that 
+    param_dist = {
+        "svc__class_weight": [None, "balanced"],
+        "svc__gamma": 10.0 ** np.arange(-2, 3),
+        "svc__C": 10.0 ** np.arange(-2, 3)
+    }
+
+    random_search = RandomizedSearchCV(svc_pipe, param_distributions=param_dist, return_train_score=True, n_jobs = -1)
+    random_search.fit(X_train, y_train)
+    best_svc = random_search.best_estimator_
+    cross_val_results['best_svc'] = pd.DataFrame(cross_validate(best_svc, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
+
 
     param_dist2 = {
         "logisticregression__C": np.logspace(-3,3,7),
@@ -67,10 +93,15 @@ def main(train_data, out_dir):
     #using grid search for optimizing hyperparameter 
     grid_search_log = GridSearchCV(logreg, param_dist2, return_train_score=True, n_jobs = -1)
     grid_search_log.fit(X_train, y_train)
-    # fit our best model
+    
     best_logreg = grid_search_log.best_estimator_
+    cross_val_results['best_logreg'] = pd.DataFrame(cross_validate(best_logreg, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
+    # fit our best model
     best_logreg.fit(X_train, y_train)
-
+    #save our final score table
+    final_table = pd.concat(cross_val_results, axis=1) 
+    table_path = out_dir + '/score_table.csv'
+    final_table.to_csv(table_path, sep=',', encoding='utf-8')
     # save fitted model by using pickle
     pickle.dump(best_logreg, open(out_dir+'/final_model.sav', 'wb'))
 
