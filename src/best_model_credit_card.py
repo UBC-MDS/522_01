@@ -29,9 +29,9 @@ opt = docopt(__doc__)
 
 def main(train_data, out_dir):
 
-    train_df = pd.read_csv(train_data)
+    train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
     X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
-
+    
     #fill missing value with most frequent value of that column for categorical; mean value for numerical 
     cat_imputer = SimpleImputer(strategy='most_frequent', fill_value=np.nan)
     num_imputer = SimpleImputer(strategy='mean', fill_value= np.nan)
