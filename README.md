@@ -64,9 +64,9 @@ In order to replicate this analysis:
 2. Navigate to this repository and ensure it is your current working directory. 
 
 2. Run the following code in your terminal:
-
+```
       python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_path=<supply an output location> [--filename=<supply a suitable filename>] 
-      
+```   
 The filename argument is optional and if not supplied it will default to 'crx.csv'. 
 
 This is done so we ensure that by default the data file is downloaded and converted to a csv file the experiment can read.
