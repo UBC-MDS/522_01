@@ -1,0 +1,137 @@
+---
+title: "Credit Card Approval Prediction"
+author: "Spencer Gerlach, Daniel Merigo, Mengjun Chen, Ruslan Dimitrov"
+date: "2022/11/26"
+output: 
+  html_document:
+    toc: true
+  github_document:
+    toc: true
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+```
+
+```{r load model results, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+test_score_df <- read_csv("../results/test_score_df.csv")
+score_table <- read_csv("../results/score_table.csv")
+# score_table[1,1] <- c('score_type')
+colnames(score_table) <- c('Score', 'Dummy Mean','Dummy SD', 'LR Mean', 'LR SD', 'SVC Mean', 'SVC SD', 'Best SVC Mean', 'Best SVC SD', 'Best LR Mean', 'Best LR SD')
+score_table <- score_table[2:5,]
+score_table$Score <- c('Fit Time', 'Score Time', 'Test Score', 'Train Score')
+```
+
+# Credit Card Prediction Analysis Report
+
+# Preface
+
+This report was developed as a deliverable for the term project in DSCI 522 (Data Science Workflows), a course in the Master of Data Science program at the University of British Columbia.
+
+The overall objective of the project is to automate a typical data science workflow. This report summarizes the results of a collection of automated python scripts that conduct data retrieval, data cleaning, EDA, creation of a predictive ML model, and interpretation of results. The report takes time to explain details of each step and apply it to the context of the dataset in question. The report assumes the reader has an introductory knowledge of machine learning terminology, and basic machine learning concepts such as cross-validation and hyperparameter optimization.
+
+# Introduction
+
+## Dataset
+
+The dataset used in this analysis is the [Credit Approval Dataset](https://archive-beta.ics.uci.edu/dataset/27/credit+approval) from the UC Irvine Machine Learning Repository [linked here](https://archive-beta.ics.uci.edu/). The dataset included a good selection of features upon which to build a simple automated machine learning and statistical exercise. The dataset contains data on Japanese credit card screening of credit card applications. All attribute names and values have been anonymized in order to protect the confidentiality of the applicants. A high level characterization of the features is found at the dataset page linked above. The raw dataset contains a mixture of categorical and numeric features named A1-A16, where the target feature A16 contains values of + or - indicating whether the candidate is approved or not.
+
+## Analysis Question
+
+The analysis focuses on predicting whether a credit card applicant will be approved or not based on a set of features that describe that applicant. 
+
+The specific analysis question is:
+**“Given features about a credit card applicant, will the applicant be approved for a credit card?”**
+
+## Analysis Overview
+
+This classification exercise evaluates the prediction accuracy of two simple machine learning models:
+
+1. Support Vector Machine Classifier (RBF Kernel), which we will refer to as `SVC`
+2. Logistic Regression model, which we will refer to as `Logistic Regression`
+
+These models are compared against eachother, and the best-performing model is scored on unseen test data to evaluate the overall success of the study.
+
+# Analysis and Results
+
+## Methods
+
+The R and Python programming languages [@R-base, @Python], and the following R and Python packages were used to conduct the analysis and summarize the results: tidyverse [@tidyverse], knitr [@knitr], docopt [@docopt, @docoptpython], os [@Python], altair [@2018-altair], pickle [@pickle], and pandas [@mckinney-proc-scipy-2010].
+
+The code used to perform the analysis and create this report can be found here: https://github.com/UBC-MDS/Credit_Approval_Prediction.
+
+## Exploratory Data Analysis (EDA): Key Findings
+
+An initial exploratory data analysis is conducted to determine if the data has missing values, or incorrect feature data types. Before any further analysis can be conducted, the dataset is cleaned to replace missing values, ensure features have the correct data type, and to split the data into “training data” (used for exploratory data analysis and model creation), and “test data” used to evaluate the accuracy of the final model
+
+A more thorough EDA analysis, [linked here], is conducted on the training data to visualize the distribution of various feature values, and to detect any existing correlation between numeric features. The Credit Approval dataset is anonymized, so information gleaned from the EDA can only tell us which features (A1-A16) may or may not be important when predicting the target, and which features may be correlated or distributed according to certain known distributions. We are not able to apply any real-world contextual background or domain knowledge to the dataset without labelled feature names.
+
+The EDA generated the following conclusions about the dataset:
+
+- There are 690 rows (examples) in the original dataset, 522 of which are used to train the two ML models after a 80%/20% train-test data split. Some of this data is missing values that are imputed prior to use in the models.
+- The dataset has 16 columns, 6 of which are numeric, and 10 are categorical.
+- Numeric columns require scaling during the preprocessing stage of model creation.
+- There is no significant correlation found between any two features in the dataset.
+
+## Machine Learning Model Creation
+
+The objective of the modeling analysis is to correctly predict whether a credit card applicant will be approved or not approved. This requires a well-performing classification model. As stated in the Introduction, two candidate models are chosen for evaluation: SVC and Logistic Regression.
+
+### Model Selection with Cross Validation
+
+These models are evaluated against eachother using 5-fold cross-validation to determine which model may yield the highest accuracy when scored against unseen test data. A reference “dummy” model was created as a basis for comparison for the Logistic Regression and SVC models. 
+
+The results of the 5-fold cross-validation show that the Logistic Regression model and the SVC model both perform relatively well, with cross-validation scores of [INLINE R CODE HERE LogReg] and [INLINE R CODE HERE SVC] respectively.
+
+```{r crossvalidation results}
+cross_val_df <- score_table[,1:7]
+  
+knitr::kable(cross_val_df, caption = 'Table 1. 5-Fold Cross Validation Results') |>
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+### Model Selection with Hyperparameter Optimization
+
+The performance of machine learning models can be improved by optimizing their “hyperparameters”: these are like dials that can be turned to fine-tune model performance [@Ippolito]. 
+
+In an attempt to improve the SVC and Logistic Regression model performance, we conduct hyperparameter optimization using a randomized search for the best hyperparameters across a given range of possible values. The results show that there is no significant improvement in the model’s performance after conducting this optimization.
+
+```{r optimized models table}
+optimized_models <- score_table[, c(1, 2, 3, 4, 5, 6, 7, 10, 11, 8, 9)]
+  
+knitr::kable(optimized_models, caption = 'Table 2. Model Scores Comparison: Pre- & Post-Optimization') |>
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+The Logistic Regression model with default parameters has the highest cross-validation accuracy across all tested models, so we choose that as our final model.
+
+# Final Scoring and Limitations
+
+## Summary
+
+Applying our fitted model to the unseen test data yields an accuracy of `r test_score_df[1,1]`. This score is relatively good, but a bank or credit card company may need more certainty in any model they use to approve or deny credit cards to applicants.
+
+## Limitations
+
+The two incorrect outcomes of the model could be:
+
+1. A customer is approved for a credit card when they shouldn’t be.
+2. A customer is not approved for a credit card when they should be.
+
+A credit card company makes money in three major ways [@lambarena_2021]:
+
+1. Interest (late fees)
+2. Credit card fees charged to cardholders
+3. Transaction fees paid by businesses
+
+An incorrect model prediction is one that decreases revenue by affecting any of those three areas. Both incorrect model outcomes have the capacity to affect the three revenue generating methods.
+
+The accuracy obtained by the final model is relatively good, but at the scale of banks or credit card companies, a score such as this could mean millions or billions of lost revenue. If a predictive model such as this were to be created for real life application, much more data should be used in the training process. Contextual information about the data may also allow for the application of domain knowledge, which could allow the data scientist to develop better questions about the data, collect data in a better way, or engineer features that may be more effective in portraying the underlying relationships in the data.
+
+
+# References
