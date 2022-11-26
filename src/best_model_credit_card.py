@@ -21,7 +21,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.impute import SimpleImputer
 from sklearn.compose import make_column_transformer
 from docopt import docopt
-import os 
+from sklearn.model_selection import GridSearchCV
 import pickle
 
 
@@ -59,11 +59,20 @@ def main(train_data, out_dir):
 
     #logistic regression model with default hyperparameter is the best model in this case, details can see src/fit_credit_card_model.ipynb
     logreg = make_pipeline(preprocessor, LogisticRegression(random_state=522))
+
+    param_dist2 = {
+        "logisticregression__C": np.logspace(-3,3,7),
+        "logisticregression__penalty" : ['l1','l2']
+    }
+    #using grid search for optimizing hyperparameter 
+    grid_search_log = GridSearchCV(logreg, param_dist2, return_train_score=True, n_jobs = -1)
+    grid_search_log.fit(X_train, y_train)
     # fit our best model
-    logreg.fit(X_train, y_train)
+    best_logreg = grid_search_log.best_estimator_
+    best_logreg.fit(X_train, y_train)
 
     # save fitted model by using pickle
-    pickle.dump(logreg, open(out_dir+'/final_model.sav', 'wb'))
+    pickle.dump(best_logreg, open(out_dir+'/final_model.sav', 'wb'))
 
 if __name__ == "__main__":
     main(opt['--train_data'],opt['--out_dir'])
