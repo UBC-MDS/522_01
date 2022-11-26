@@ -1,6 +1,0 @@
-,dummy,dummy,logreg,logreg,svc,svc,best_svc,best_svc,best_logreg,best_logreg
-,mean,std,mean,std,mean,std,mean,std,mean,std
-fit_time,0.007,0.001,0.026,0.013,0.013,0.004,0.01,0.001,0.016,0.003
-score_time,0.003,0.0,0.008,0.007,0.007,0.002,0.005,0.0,0.003,0.0
-test_score,0.551,0.004,0.879,0.012,0.857,0.024,0.87,0.013,0.879,0.012
-train_score,0.551,0.001,0.883,0.006,0.897,0.005,0.971,0.005,0.883,0.006
