@@ -64,7 +64,7 @@ In order to replicate this analysis:
 2. Navigate to this repository and ensure it is your current working directory. 
 
 2. Run the following code in your terminal:
-Install the [dependencies](##Dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
+Install the [dependencies](#Dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
 ```python
 # # Download data
