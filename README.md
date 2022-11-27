@@ -1,4 +1,3 @@
-<!-- #region -->
 # Credit Approval Prediction
 
 ## Contributors:
@@ -67,25 +66,27 @@ In order to replicate this analysis:
 2. Run the following code in your terminal:
 Install the [dependencies](##Dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
-### Download data
+```python
+# # Download data
+# python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_path=<supply an output location> [--filename=<supply a suitable filename>]
 
-`python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_path=<supply an output location> [--filename=<supply a suitable filename>] `
-
-### Pre-process data 
-`src/pre_process_crx.py --input=<input> --out_dir=<out_dir>`
+# # Pre-process data 
+# src/pre_process_crx.py --input=<input> --out_dir=<out_dir>
     
+# # Create exploratory data analysis figures
+# src/eda_script.py --input=<input> --output=<output>
 
-### Create exploratory data analysis figures
-`src/eda_script.py --input=<input> --output=<output>`
+# # Model data and select best model
+# src/best_model_credit_card.py --train_data=<train_data> --out_dir=<out_dir>
 
-### Model data and select best model
-`src/best_model_credit_card.py --train_data=<train_data> --out_dir=<out_dir>`
+# # Test best model
+src/best_model_credit_card.py --trained_model_dir=<trained_model_dir> --test_df_dir=<test_df_dir> --out_dir=<out_dir>
 
-### Test best model
-`src/best_model_credit_card.py --trained_model_dir=<trained_model_dir> --test_df_dir=<test_df_dir> --out_dir=<out_dir>`
+# # render final report
+Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_format = 'html_document')
 
-### render final report
-`Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_format = 'html_document')`
+```
+
 
 ## Dependencies
 
@@ -111,8 +112,3 @@ The license information can be viewed in the `LICENSE` file found in the root di
 ## Attribution
 
 The automated scripting file in `src/download_data.py` is based on the script `download_data.py` created by Tiffany Timbers 2019-12-18. It can be found [here](https://github.com/ttimbers/breast_cancer_predictor/blob/master/src/download_data.py)
-<!-- #endregion -->
-
-```python
-
-```
