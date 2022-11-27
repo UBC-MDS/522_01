@@ -1,3 +1,4 @@
+<!-- #region -->
 # Credit Approval Prediction
 
 ## Contributors:
@@ -53,7 +54,7 @@ These models will undergo hyperparameter optimization, and the optimized models 
 
 ## Report
 
-The final report will be linked here once completed.
+The final report can be found [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/credit-appr-predict-report.Rmd)
 
 ## Usage
 
@@ -64,12 +65,27 @@ In order to replicate this analysis:
 2. Navigate to this repository and ensure it is your current working directory. 
 
 2. Run the following code in your terminal:
-```
-      python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_path=<supply an output location> [--filename=<supply a suitable filename>] 
-```   
-The filename argument is optional and if not supplied it will default to 'crx.csv'. 
+Install the [dependencies](##Dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
-This is done so we ensure that by default the data file is downloaded and converted to a csv file the experiment can read.
+### Download data
+
+`python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_path=<supply an output location> [--filename=<supply a suitable filename>] `
+
+### Pre-process data 
+`src/pre_process_crx.py --input=<input> --out_dir=<out_dir>`
+    
+
+### Create exploratory data analysis figures
+`src/eda_script.py --input=<input> --output=<output>`
+
+### Model data and select best model
+`src/best_model_credit_card.py --train_data=<train_data> --out_dir=<out_dir>`
+
+### Test best model
+`src/best_model_credit_card.py --trained_model_dir=<trained_model_dir> --test_df_dir=<test_df_dir> --out_dir=<out_dir>`
+
+### render final report
+`Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_format = 'html_document')`
 
 ## Dependencies
 
@@ -83,6 +99,8 @@ This is done so we ensure that by default the data file is downloaded and conver
 -   docopt=0.6.2
 -   requests=2.22.0
 -   feather-format=0.4.0
+-   scikit-learn>=1.1.3
+-   pickle >=3
 
 ## Licenses
 
@@ -93,3 +111,8 @@ The license information can be viewed in the `LICENSE` file found in the root di
 ## Attribution
 
 The automated scripting file in `src/download_data.py` is based on the script `download_data.py` created by Tiffany Timbers 2019-12-18. It can be found [here](https://github.com/ttimbers/breast_cancer_predictor/blob/master/src/download_data.py)
+<!-- #endregion -->
+
+```python
+
+```
