@@ -1,4 +1,4 @@
-# Author: Spencer Gerlach
+# Author: Spencer Gerlach, Mengjun Chen, Daniel Merigo, Ruslan Dimitrov
 # date: 2022-11-25
 """
 Using the best model for predicting the target to test the test data split. 
