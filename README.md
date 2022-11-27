@@ -46,10 +46,9 @@ Specifically, our analysis prediction question is:
 In our predictive study, we will evaluate the prediction accuracy of a number of simple machine learning models. After splitting the data in EDA into train and test splits, and conducting data preprocessing, we will train and evaluate the following models:
 
 - Support Vector Machine Classifier (RBF Kernel), which we will refer to as `SVC`
-- k-Nearest Neighbours model, which we will refer to as `kNN`
 - Logistic Regression model, which we will refer to as `Logistic Regression`
 
-These models will undergo hyperparameter optimization, and the optimized models will be scored against the test data.
+These models were compared and optimized using 5-fold cross validation, and hyperparameter optimization. These results can be viewed in the final report below.
 
 ## Report
 
@@ -111,4 +110,8 @@ The license information can be viewed in the `LICENSE` file found in the root di
 
 ## Attribution
 
-The automated scripting file in `src/download_data.py` is based on the script `download_data.py` created by Tiffany Timbers 2019-12-18. It can be found [here](https://github.com/ttimbers/breast_cancer_predictor/blob/master/src/download_data.py)
+The automated scripting files in src/ are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master/src)
+
+```python
+
+```
