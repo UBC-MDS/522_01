@@ -3,7 +3,7 @@
 """
 Using the cleaned training data to fit a best model for predicting the target. Save the model as a pickel file.
 
-Usage: src/best_model_credit_card.py --train_data=<train_data> --out_dir=<out_dir>
+Usage: best_model_credit_card.py src/best_model_credit_card.py --train_data=<train_data> --out_dir=<out_dir>
 
 Options: 
 
