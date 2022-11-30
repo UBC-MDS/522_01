@@ -7,7 +7,7 @@ Learning Repository
 https://archive-beta.ics.uci.edu/dataset/27/credit+approval.
 Splits data into train and test data and writes to separate csv files.
 
-Usage: src/pre_process_crx.py --input=<input> --out_dir=<out_dir>
+Usage: python src/pre_process_crx.py --input=<input> --out_dir=<out_dir>
   
 Options:
 --input=<input>       Path (including filename) to raw data (csv file)
