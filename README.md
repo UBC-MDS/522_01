@@ -7,7 +7,7 @@
 -   Daniel Merigo
 -   Mengjun Chen
 
-This was a data analysis term project completed for DSCI 522 (Data Science Workflows), a course in the Master of Data Science program at the University of British Columbia. 
+This is a data analysis term project completed for DSCI 522 (Data Science Workflows), a course in the Master of Data Science program at the University of British Columbia. 
 
 ## Introduction
 
@@ -52,7 +52,7 @@ These models were compared and optimized using 5-fold cross validation, and hype
 
 ## Report
 
-The final report can be found [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/credit-appr-predict-report.Rmd)
+The final report can be found [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/credit-appr-predict-report.html).
 
 ## Usage
 
@@ -60,34 +60,26 @@ In order to replicate this analysis:
 
 1. Clone this repo, following the [cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) documentation if requried.
 
-2. Navigate to this repository and ensure it is your current working directory. 
+2. Change the current wording directory to the root folder of the newly cloned repo.
 
-2. Run the following code in your terminal:
-Install the [dependencies](#Dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
+3. Install the [dependencies](#Dependencies) listed below. 
+    - Optionally, download, create, and activate the environment file (.yaml file) provided in the root directory of the repo.
 
-```python
-# # Download data
-# python src/download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data" --out_path=<supply an output location> [--filename=<supply a suitable filename>]
+4. Run the makefile from the terminal/command line using the prompt below. The makefile automates every step of the data analysis pipeline.
+    - Link to the makefile: [Makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/Makefile)
 
-# # Pre-process data 
-# src/pre_process_crx.py --input=<input> --out_dir=<out_dir>
-    
-# # Create exploratory data analysis figures
-# src/eda_script.py --input=<input> --output=<output>
+Prompt to run the makefile:
+    - `make all`
 
-# # Model data and select best model
-# src/best_model_credit_card.py --train_data=<train_data> --out_dir=<out_dir>
+5. To delete old files and redo the analysis, run the following prompts in the terminal/command line:
 
-# # Test best model
-src/best_model_credit_card.py --trained_model_dir=<trained_model_dir> --test_df_dir=<test_df_dir> --out_dir=<out_dir>
+    - `make clear`
 
-# # render final report
-Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_format = 'html_document')
-
-```
-
+    - `make all`
 
 ## Dependencies
+
+For a comprehensive list of required packages, refer to the `credit-env.yaml` file saved in the root directory of this repository.
 
 -   ipykernel
 -   ipython\>=7.15
@@ -101,6 +93,9 @@ Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_forma
 -   feather-format=0.4.0
 -   scikit-learn>=1.1.3
 -   pickle >=3
+-   pandoc=2.19.2
+-   dataframe-image
+-   vl-convert-python
 
 ## Licenses
 
@@ -111,7 +106,3 @@ The license information can be viewed in the `LICENSE` file found in the root di
 ## Attribution
 
 The automated scripting files in src/ are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master/src)
-
-```python
-
-```
