@@ -3,22 +3,24 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - pandas<1.5
+  - matplotlib>=3.2.2
+  - scikit-learn
   - python-graphviz
-  - lightgbm
-  - matplotlib[version='>=3.2.2']
-  - graphviz
-  - requests[version='>=2.24.0']
-  - pandas[version='<1.5']
-  - pip
-  - imbalanced-learn
-  - altair_saver
-  - scikit-learn[version='>=1.1.3']
-  - shap
-  - ipykernel
   - eli5
-  - selenium[version='<4.3.0']
+  - altair_saver
+  - imbalanced-learn
+  - ipykernel
+  - lightgbm
   - jinja2
-  - nltk
-  - spacy
-  - seaborn
+  - selenium<4.3.0
+  - graphviz
+  - shap
+  - docopt
   - pandoc
+  - ipython>=7.15
+  - feather-format==0.4.0
+  - requests==2.22.0
+  - pip
+  - pickle5
+  - vl-convert-python
