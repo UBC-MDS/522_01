@@ -8,8 +8,8 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - pandas[version='<1.5']
-  - matplotlib[version='>=3.2.2']
+  - pandas<1.5
+  - matplotlib>=3.2.2
   - scikit-learn
   - python-graphviz
   - eli5
@@ -18,15 +18,15 @@ dependencies:
   - ipykernel
   - lightgbm
   - jinja2
-  - selenium[version'<4.3.0']
+  - selenium<4.3.0
   - graphviz
-  - requests[version'>=2.24.0']
+  - requests>=2.24.0
   - shap
   - docopt
   - pandoc
-  - ipython[version'>=7.15']
-  - feather-format[version'=0.4.0']
-  - requests[version'=2.22.0']
+  - ipython>=7.15
+  - feather-format==0.4.0
+  - requests==2.22.0
   - pip
   - pickle5
   - vl-convert-python
