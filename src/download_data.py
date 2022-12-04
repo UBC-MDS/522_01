@@ -20,7 +20,8 @@ from docopt import docopt
 ins = docopt(__doc__)
 
 def main(url, out_path, filename=None):
-    data = pd.read_csv(url, header=None)
+    cols = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12', 'A13', 'A14', 'A15', 'A16']
+    data = pd.read_csv(url, names=cols)
     if filename != None :
         name = filename
     else:

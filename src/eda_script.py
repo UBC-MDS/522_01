@@ -20,6 +20,7 @@ from matplotlib import pyplot as plt
 from docopt import docopt
 import altair as alt
 import dataframe_image as dfi
+import os
 
 # The following function was prtovided by Joel Ostblom to enable figure saving using the Altair Library
 import vl_convert as vlc
@@ -74,7 +75,12 @@ def main(input, output):
         x = 'count()'
     ).repeat(repeat = ['A1', 'A4', 'A5', 'A6', 'A7', 'A9', 'A10', 'A12', 'A13', 'A16'], columns = 3)
     outfile = output + '/' + 'categorical_counts_histograms.png'
-    save_chart(cat_hist, outfile, 2)
+    try:
+        save_chart(cat_hist, outfile, 2)
+    except:
+        os.makedirs(output)
+        save_chart(cat_hist, outfile, 2)
+    
 
     # Numeric Plot Grid (deprecated)
     # num_grid = alt.Chart(num_feats).mark_circle().encode(
@@ -98,12 +104,22 @@ def main(input, output):
         width = 100
     ).repeat(repeat = ['A2', 'A3', 'A8', 'A11', 'A14', 'A15'], columns = 3)
     outfile = output + '/' + 'num_distributions.png'
-    save_chart(num_dist, outfile, 2)
+    try:
+        save_chart(num_dist, outfile, 2)
+    except:
+        os.makedirs(output)
+        save_chart(num_dist, outfile, 2)
 
     # Numeric correlation matrix
     corr = train_df.corr('spearman').style.background_gradient()
     outfile = output + '/' + 'matrix.png'
-    dfi.export(corr, outfile)
+    try:
+        dfi.export(corr, outfile)
+    except:
+        os.makedirs(output)
+        dfi.export(corr, outfile)
+    
+
 
 if __name__ == '__main__':
     main(opt['--input'], opt['--output'])

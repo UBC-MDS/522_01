@@ -27,7 +27,7 @@ opt = docopt(__doc__)
 
 def main(trained_model_dir, test_df_dir, out_dir):
 
-    test_df = pd.read_csv(test_df_dir)
+    test_df = pd.read_csv(test_df_dir, encoding="utf-8", index_col=0)
     X_test, y_test = test_df.drop(columns=['A16']), test_df['A16']
 
     fitted_model = pickle.load(open(trained_model_dir,'rb'))
