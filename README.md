@@ -69,6 +69,7 @@ In order to replicate this analysis:
     - Link to the makefile: [Makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/Makefile)
 
 Prompt to run the makefile:
+
     - `make all`
 
 5. To delete old files and redo the analysis, run the following prompts in the terminal/command line:
@@ -79,7 +80,10 @@ Prompt to run the makefile:
 
 ## Dependencies
 
-For a comprehensive list of required packages, refer to the `credit-env.yaml` file saved in the root directory of this repository.
+For a comprehensive list of required packages, refer to the `credit-env.yaml` file saved in the root directory of this repository [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/credit-env.yaml).
+
+    - Install the project's dependency environment by running the following command in the conda base environment:
+        - `conda env create -f credit-env.yaml`
 
 -   ipykernel
 -   ipython\>=7.15
