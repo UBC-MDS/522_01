@@ -73,7 +73,7 @@ There are two method to replicate this analysis:
 4. Run the makefile from the terminal/command line using the prompt below. The makefile automates every step of the data analysis pipeline.
     - Link to the makefile: [Makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/Makefile)
 
-Prompt to run the makefile:
+- Prompt to run the makefile:
 
     - `make all`
 
