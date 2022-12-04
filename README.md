@@ -21,20 +21,6 @@ The project included the following major deliverables:
 - Creation of a reproducible report in Jupyter Lab or R Markdown, 
 - Automation of the analysis workflow using `GNU Make`
 
-## Exploratory Data Analysis
-
-The dataset in question, [Credit Approval dataset](https://archive-beta.ics.uci.edu/dataset/27/credit+approval), included a good selection of features upon which to build a simple automated machine learning and statistical exercise. The dataset contains data on Japanese credit card screening of credit card applications. All attribute names and values have been anonymized in order to protect the confidentiality of the applicants. A high level characterization of the features is found at the dataset page linked above. The raw dataset contains a mixture of categorical and numeric features named A1-A16, where the target feature A16 contains values of `+` or `-` indicating whether the candidate is approved or not.
-
-An EDA analysis, [linked here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/src/Exploratory_Data_Analysis.ipynb), was conducted to investigate the contents of the dataset, relabel and remove missing values, visualize the distribution of various feature values, and to detect any existing correlation between numeric features. 
-
-The Credit Approval dataset is anonymized, so information gleaned from the EDA can only tell us which features (A1-A16) may or may not be important when predicting the target, and which features may be correlated or distributed according to certain known distributions. We are not able to apply any real-world contextual background or domain knowledge to the dataset without labelled feature names.
-
-The EDA generated the following conclusions about the dataset:
-- There are 690 rows in the original dataset, 522 of which will be used to train the ML models after a 80%/20% train-test data split. Some of this data is missing values that are replaced/filtered by the EDA.
-- The dataset has 16 columns, 6 of which are numeric, and 10 are categorical.
-- Numeric columns will require scaling during the preprosessing stage of model creation.
-- There is no significant correlation found between any two features in the dataset.
-
 ## Analysis Question
 
 This analysis will focus on predicting whether a credit card applicant will be approved or not approved based on a set of features describing that applicant. The dataset in question will be trained on the train portion of the initial dataset (defined during EDA phase), and evaluated against a smaller testing portion of the initial dataset.
@@ -50,9 +36,23 @@ In our predictive study, we will evaluate the prediction accuracy of a number of
 
 These models were compared and optimized using 5-fold cross validation, and hyperparameter optimization. These results can be viewed in the final report below.
 
+## Exploratory Data Analysis
+
+The dataset in question, [Credit Approval dataset](https://archive-beta.ics.uci.edu/dataset/27/credit+approval), included a good selection of features upon which to build a simple automated machine learning and statistical exercise. The dataset contains data on Japanese credit card screening of credit card applications. All attribute names and values have been anonymized in order to protect the confidentiality of the applicants. A high level characterization of the features is found at the dataset page linked above. The raw dataset contains a mixture of categorical and numeric features named A1-A16, where the target feature A16 contains values of `+` or `-` indicating whether the candidate is approved or not.
+
+An EDA analysis, [linked here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/src/Exploratory_Data_Analysis.ipynb), was conducted to investigate the contents of the dataset, relabel and remove missing values, visualize the distribution of various feature values, and to detect any existing correlation between numeric features. 
+
+The Credit Approval dataset is anonymized, so information gleaned from the EDA can only tell us which features (A1-A16) may or may not be important when predicting the target, and which features may be correlated or distributed according to certain known distributions. We are not able to apply any real-world contextual background or domain knowledge to the dataset without labelled feature names.
+
+The EDA generated the following conclusions about the dataset:
+- There are 690 rows in the original dataset, 522 of which will be used to train the ML models after a 80%/20% train-test data split. Some of this data is missing values that are replaced/filtered by the EDA.
+- The dataset has 16 columns, 6 of which are numeric, and 10 are categorical.
+- Numeric columns will require scaling during the preprosessing stage of model creation.
+- There is no significant correlation found between any two features in the dataset.
+
 ## Report
 
-The final report can be found [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/credit-appr-predict-report.html).
+The final analysis report can be found [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/credit-appr-predict-report.html). This report details the full analysis pipeline, and the results of the machine learning model creation and testing.
 
 ## Usage
 
@@ -71,6 +71,7 @@ There are two method to replicate this analysis:
     - Link to the makefile: [Makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/Makefile)
 
 Prompt to run the makefile:
+
     - `make all`
 
 5. To delete old files and redo the analysis, run the following prompts in the terminal/command line:
@@ -80,6 +81,7 @@ Prompt to run the makefile:
     - `make all`
 
 ### Method 2
+
 4. Downloading raw data:
 
     ``` 
@@ -115,7 +117,9 @@ Prompt to run the makefile:
 
 ## Dependencies
 
-For a comprehensive list of required packages, refer to the [credit-env.yaml](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/credit-env.yaml) file saved in the root directory of this repository.
+For a comprehensive list of required packages, refer to the [credit-env.yaml](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/credit-env.yaml) file saved in the root directory of this repository. 
+
+Install the project's dependencies environment by running the following command in the conda base environment: `conda env create -f credit-env.yaml`
 
 -   ipykernel
 -   ipython\>=7.15

@@ -37,6 +37,10 @@ The overall objective of the project is to automate a typical data science workf
 
 # Introduction
 
+## Background
+
+Getting approved for a credit card depends on a number of factors. Credit card companies and banks can leverage machine learning models to help make quick and accurate decisions about who should be approved, and who should not. It is in the best interest of these companies to correctly approve or deny credit cards, as there may be significant financial benefits for correct decisions, and various challenges after an incorrect prediction.
+
 ## Dataset
 
 The dataset used in this analysis is the [Credit Approval Dataset](https://archive-beta.ics.uci.edu/dataset/27/credit+approval) from the UC Irvine Machine Learning Repository [linked here](https://archive-beta.ics.uci.edu/). The dataset included a good selection of features upon which to build a simple automated machine learning and statistical exercise. The dataset contains data on Japanese credit card screening of credit card applications. All attribute names and values have been anonymized in order to protect the confidentiality of the applicants. A high level characterization of the features is found at the dataset page linked above. The raw dataset contains a mixture of categorical and numeric features named A1-A16, where the target feature A16 contains values of + or - indicating whether the candidate is approved or not.
@@ -70,6 +74,12 @@ The code used to perform the analysis and create this report can be found here: 
 An initial exploratory data analysis is conducted to determine if the data has missing values, or incorrect feature data types. Before any further analysis can be conducted, the dataset is cleaned to replace missing values, ensure features have the correct data type, and to split the data into “training data” (used for exploratory data analysis and model creation), and “test data” used to evaluate the accuracy of the final model
 
 A more thorough EDA analysis, [linked here], is conducted on the training data to visualize the distribution of various feature values, and to detect any existing correlation between numeric features. The Credit Approval dataset is anonymized, so information gleaned from the EDA can only tell us which features (A1-A16) may or may not be important when predicting the target, and which features may be correlated or distributed according to certain known distributions. We are not able to apply any real-world contextual background or domain knowledge to the dataset without labelled feature names.
+
+The following figure shows the lack of correlation between features in the dataset:
+
+```{r, out.height='250px', out.width='600px', fig.cap='Figure 3. EDA Correlation Plot of Numerical Features', fig.align='center'}
+knitr::include_graphics("../results/matrix.png")
+```
 
 The EDA generated the following conclusions about the dataset:
 
