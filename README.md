@@ -79,7 +79,7 @@ Prompt to run the makefile:
 
 ## Dependencies
 
-For a comprehensive list of required packages, refer to the `credit-env.yaml` file saved in the root directory of this repository.
+For a comprehensive list of required packages, refer to the [credit-env.yaml](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/credit-env.yaml) file saved in the root directory of this repository.
 
 -   ipykernel
 -   ipython\>=7.15
