@@ -1,0 +1,32 @@
+# Install the Projects conda environment by running 
+# the following command in your conda base environment:
+# conda env create -f credit_approval_env.yml
+
+
+name: 'Credit_Approval_Prediction'
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pandas[version='<1.5']
+  - matplotlib[version='>=3.2.2']
+  - scikit-learn
+  - python-graphviz
+  - eli5
+  - altair_saver
+  - imbalanced-learn
+  - ipykernel
+  - lightgbm
+  - jinja2
+  - selenium[version'<4.3.0']
+  - graphviz
+  - requests[version'>=2.24.0']
+  - shap
+  - docopt
+  - pandoc
+  - ipython[version'>=7.15']
+  - feather-format[version'=0.4.0']
+  - requests[version'=2.22.0']
+  - pip
+  - pickle5
+  - vl-convert-python
