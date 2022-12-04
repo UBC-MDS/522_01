@@ -11,30 +11,33 @@ This is a data analysis term project completed for DSCI 522 (Data Science Workfl
 
 ## Introduction
 
-The overall goal of this project was to use a publicly available dataset to answer a question about the data, and to automate the data science workflow associated with the analysis.
+The overall goal of this project was to use a publicly available dataset to answer a question about the data, and to automate a data science workflow associated with the analysis.
 
 This data analysis project includes an analysis of the [Credit Approval dataset](https://archive-beta.ics.uci.edu/dataset/27/credit+approval), made publicly available via the UC Irvine Machine Learning Repository. 
 
 The project included the following major deliverables: 
 
-- Write 4-5 R/python scripts, 
-- Creation of a reproducible report in Jupyter Lab or R Markdown, 
-- Automation of the analysis workflow using `GNU Make`
+- Write 4-5 R/python scripts to download and clean the data, conduct EDA, and create, tune, and score a machine learning model on the data, 
+- Creation of a reproducible report in R Markdown, the rendering of which is then automated via terminal commands, 
+- Automation of the full analysis workflow using `GNU Make`
+- Final analysis packaging with `Docker`
 
 ## Analysis Question
 
-This analysis will focus on predicting whether a credit card applicant will be approved or not approved based on a set of features describing that applicant. The dataset in question will be trained on the train portion of the initial dataset (defined during EDA phase), and evaluated against a smaller testing portion of the initial dataset.
+Getting approved for a credit card depends on a number of factors. Credit card companies and banks can leverage machine learning models to help make quick and accurate decisions about who should be approved, and who should not. It is in the best interest of these companies to correctly approve or deny credit cards, as there may be significant financial benefits for correct decisions, and various challenges after an incorrect prediction.
+
+This analysis focuses on predicting whether a credit card applicant will be approved or not approved based on a set of features describing that applicant. The dataset in question is trained on the train portion of the initial dataset, and evaluated against a smaller testing portion of the initial dataset.
 
 Specifically, our analysis prediction question is: 
 
 > "Given features about a credit card applicant, will the applicant be approved for a credit card?"
 
-In our predictive study, we will evaluate the prediction accuracy of a number of simple machine learning models. After splitting the data in EDA into train and test splits, and conducting data preprocessing, we will train and evaluate the following models:
+In our predictive study, we will evaluate the prediction accuracy of two simple machine learning models. After splitting the data in EDA into train and test splits, and conducting data preprocessing, we will train and evaluate the following models:
 
 - Support Vector Machine Classifier (RBF Kernel), which we will refer to as `SVC`
 - Logistic Regression model, which we will refer to as `Logistic Regression`
 
-These models were compared and optimized using 5-fold cross validation, and hyperparameter optimization. These results can be viewed in the final report below.
+These models are compared and optimized using 5-fold cross validation, and hyperparameter optimization. These results can be viewed in the final report linked below in the [report section](#Report).
 
 ## Exploratory Data Analysis
 
