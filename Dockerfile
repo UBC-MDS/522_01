@@ -1,17 +1,22 @@
 # Start from debian:stable image
-FROM debian:stable
+FROM continuumio/miniconda3
 
-# Update debian:stable
 RUN apt-get update
 
-# Install python
-RUN apt-get install -y python
+RUN apt install chromium-driver -y
 
-# Install pip3 for python3
-RUN apt-get install pip -y
+RUN apt-get install build-essential -y
 
-# Install ipython
-RUN pip install ipython
+WORKDIR /app
 
-# Install Conda
+# Create the environment:
+COPY credit-env.yaml .
+RUN conda env create -f credit-env.yaml
+
+# Make RUN commands use the new environment:
+SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
+
+# Demonstrate the environment is activated:
+RUN echo "Make sure flask is installed:"
+RUN python -c "import flask"
 
