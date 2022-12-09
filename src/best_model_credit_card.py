@@ -30,10 +30,7 @@ import pickle
 
 opt = docopt(__doc__)
 
-def main(train_data, out_dir):
-
-    train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
-    X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
+def preprocess():
 
     #fill missing value with most frequent value of that column for categorical; mean value for numerical 
     cat_imputer = SimpleImputer(strategy='most_frequent', fill_value=np.nan)
@@ -59,6 +56,11 @@ def main(train_data, out_dir):
         (cat_transformer_nonbi, categorical_features_miss),
         (OneHotEncoder(sparse=False, handle_unknown= 'ignore'), categorical_features_nomi)
     )
+
+    return preprocessor
+
+def finding_best_model(X_train, y_train, out_dir):
+    preprocessor = preprocess()
     # creating score table, by using default R^2 score
     cross_val_results= {}
     #dummy classifier as a baseline
@@ -96,15 +98,26 @@ def main(train_data, out_dir):
     
     best_logreg = grid_search_log.best_estimator_
     cross_val_results['best_logreg'] = pd.DataFrame(cross_validate(best_logreg, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
-    # fit our best model
-    best_logreg.fit(X_train, y_train)
+    
     #save our final score table
     final_table = pd.concat(cross_val_results, axis=1) 
     table_path = out_dir + '/score_table.csv'
     final_table.to_csv(table_path, sep=',', encoding='utf-8')
-    # save fitted model by using pickle
-    pickle.dump(best_logreg, open(out_dir+'/final_model.sav', 'wb'))
+    return best_logreg
 
+
+
+def main(train_data, out_dir):
+    #loading data
+    train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
+    X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
+    #loading best model
+    best_model = finding_best_model(X_train=X_train, y_train=y_train, out_dir=out_dir)
+    # fit our best model
+    best_model.fit(X_train, y_train)
+    # save fitted model by using pickle
+    pickle.dump(best_model, open(out_dir+'/final_model.sav', 'wb'))
+    
 if __name__ == "__main__":
     main(opt['--train_data'],opt['--out_dir'])
 
