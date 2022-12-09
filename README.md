@@ -120,7 +120,7 @@ There are two method to replicate this analysis:
 
 ## Makefile Dependencies Graph
 
-!(makefile)[Makefile.png]
+!(makefile)[main/Makefile.png]
 
 ## Dependencies
 
