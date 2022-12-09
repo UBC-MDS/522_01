@@ -141,6 +141,20 @@ def finding_best_model(X_train, y_train, out_dir):
 
 
 def main(train_data, out_dir):
+    """
+    Save the best model for our dataset
+    
+    Parameters
+    ----------------
+    train_data: csv
+        training data 
+    out_dir: string
+        out directory path
+    
+    Return
+    ---------
+    Saving our best model, but nothing returns
+    """
     #loading data
     train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
     X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
