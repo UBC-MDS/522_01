@@ -31,7 +31,20 @@ import pickle
 opt = docopt(__doc__)
 
 def preprocess():
-
+    """
+    create a preprocessor for our data set
+    
+    Parameters
+    --------------
+    None
+    
+    Return
+    --------------
+    preprocessor: 
+        a preprocessing pipeline that will make our data ready for model 
+        
+    """
+    
     #fill missing value with most frequent value of that column for categorical; mean value for numerical 
     cat_imputer = SimpleImputer(strategy='most_frequent', fill_value=np.nan)
     num_imputer = SimpleImputer(strategy='mean', fill_value= np.nan)
@@ -60,6 +73,26 @@ def preprocess():
     return preprocessor
 
 def finding_best_model(X_train, y_train, out_dir):
+    """
+    Finding the best model for our dataset and save the score table
+    
+    Parameters
+    --------------
+    X_train: dataframe
+        X_train dataset 
+    y_train: dataframe
+        y_train dataset
+    out_dir: string
+        out directory path
+    
+    Return
+    --------------
+    best_logreg: model
+        The best model we find out after hyperparameter optimisation
+        
+    """
+    
+    #loading preprocessor
     preprocessor = preprocess()
     # creating score table, by using default R^2 score
     cross_val_results= {}
