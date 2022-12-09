@@ -16,7 +16,7 @@ RUN conda env create -f credit-env.yaml
 # Make RUN commands use the new environment:
 SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
-# Demonstrate the environment is activated:
-RUN echo "Make sure flask is installed:"
-RUN python -c "import flask"
+# # Demonstrate the environment is activated:
+# RUN echo "Make sure flask is installed:"
+# RUN python -c "import flask"
 
