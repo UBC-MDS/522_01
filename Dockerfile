@@ -23,7 +23,7 @@ RUN apt-get install r-base r-base-dev -y
 
 RUN Rscript -e "install.packages(c('rmarkdown', 'here'), repos = 'https://mran.revolutionanalytics.com/snapshot/2022-12-05')"
 
-RUN Rscript -e "install.packages('kableExtra'', dependencies = TRUE)"
+RUN Rscript -e "install.packages('kableExtra', dependencies = TRUE)"
 
 # # Demonstrate the environment is activated:
 # RUN echo "Make sure flask is installed:"
