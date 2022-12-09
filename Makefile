@@ -28,6 +28,7 @@ results/final_model.sav results/score_table.csv: data/processed/train_df.csv src
 results/test_score_df.csv: results/final_model.sav src/model_test_script.py
 	python src/model_test_script.py --trained_model_dir=results/final_model.sav --test_df_dir=data/processed/train_df.csv --out_dir='results'
 
+
 # Render HTML report
 doc/credit-appr-predict-report.html: results/test_score_df.csv results/score_table.csv doc/credit-appr-predict-report.Rmd doc/references.bib
 	Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_format = 'html_document')"	
