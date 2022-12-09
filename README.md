@@ -120,7 +120,7 @@ There are two method to replicate this analysis:
 
 ## Makefile Dependencies Graph
 
-!(Makefile)[Makefile.png]
+!(Makefile)[https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/014b7405e9f88d85d87cf94eb2b099ec94611d55/Makefile.png]
 
 ## Dependencies
 
