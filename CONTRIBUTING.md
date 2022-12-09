@@ -4,7 +4,7 @@ This outlines are indicated to know the credit card approving factors based on o
 
 There is also a strict no meanness rule. At every step, please be kind and inclusive, even if people are asking not-so-informed questions.
 
-### External people
+### External Contributors
 
 * Open a Issue to discuss where you think might have problems 
 * You can fork this repo if the problems have been committed by Two of the Members
