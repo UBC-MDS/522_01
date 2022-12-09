@@ -81,21 +81,7 @@ def main(input, output):
         os.makedirs(output)
         save_chart(cat_hist, outfile, 2)
     
-
-    # Numeric Plot Grid (deprecated)
-    # num_grid = alt.Chart(num_feats).mark_circle().encode(
-    #     alt.X(alt.repeat('column'), type = 'quantitative'),
-    #     alt.Y(alt.repeat('row'), type = 'quantitative')
-    # ).repeat(
-    #     row = ['A2', 'A3', 'A8', 'A11', 'A14', 'A15'],
-    #     column = ['A2', 'A3', 'A8', 'A11', 'A14', 'A15']).configure_axis(
-    #         grid = False
-    #     )
-
-    # save_chart(num_grid, 'categorical_counts_histogram.png', 1)
-
-    # Numeric distributions
-
+    # Numerical distributtions plot grid
     num_dist = alt.Chart(num_feats).mark_bar().encode(
         x = alt.X(alt.repeat('repeat'), bin= alt.Bin(maxbins= 30)),
         y = 'count()'
