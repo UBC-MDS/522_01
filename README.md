@@ -118,6 +118,23 @@ There are two method to replicate this analysis:
     ```
 
 
+### Usage with Docker
+
+The image for rendering the results of this project resides at:
+[Docker Hub](https://hub.docker.com/repository/docker/creditapprovalprediction/credit_approval_prediction)
+
+In order to run the image you need to install Docker Desktop.  
+
+Then from the folder where you have cloned project repository run in terminal:
+
+    ``` 
+    docker run --rm -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction all
+    ```
+In order to clean the output from the above command run:
+    ``` 
+    docker run --rm -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction clean
+    ```
+
 ## Makefile Dependencies Graph
 
 ![makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/014b7405e9f88d85d87cf94eb2b099ec94611d55/Makefile.png)
