@@ -30,11 +30,21 @@ import pickle
 
 opt = docopt(__doc__)
 
-def main(train_data, out_dir):
-
-    train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
-    X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
-
+def preprocess():
+    """
+    create a preprocessor for our data set
+    
+    Parameters
+    --------------
+    None
+    
+    Return
+    --------------
+    preprocessor: 
+        a preprocessing pipeline that will make our data ready for model 
+        
+    """
+    
     #fill missing value with most frequent value of that column for categorical; mean value for numerical 
     cat_imputer = SimpleImputer(strategy='most_frequent', fill_value=np.nan)
     num_imputer = SimpleImputer(strategy='mean', fill_value= np.nan)
@@ -59,6 +69,31 @@ def main(train_data, out_dir):
         (cat_transformer_nonbi, categorical_features_miss),
         (OneHotEncoder(sparse=False, handle_unknown= 'ignore'), categorical_features_nomi)
     )
+
+    return preprocessor
+
+def finding_best_model(X_train, y_train, out_dir):
+    """
+    Finding the best model for our dataset and save the score table
+    
+    Parameters
+    --------------
+    X_train: dataframe
+        X_train dataset 
+    y_train: dataframe
+        y_train dataset
+    out_dir: string
+        out directory path
+    
+    Return
+    --------------
+    best_logreg: model
+        The best model we find out after hyperparameter optimisation
+        
+    """
+    
+    #loading preprocessor
+    preprocessor = preprocess()
     # creating score table, by using default R^2 score
     cross_val_results= {}
     #dummy classifier as a baseline
@@ -96,15 +131,40 @@ def main(train_data, out_dir):
     
     best_logreg = grid_search_log.best_estimator_
     cross_val_results['best_logreg'] = pd.DataFrame(cross_validate(best_logreg, X_train, y_train, return_train_score=True)).agg(['mean', 'std']).round(3).T
-    # fit our best model
-    best_logreg.fit(X_train, y_train)
+    
     #save our final score table
     final_table = pd.concat(cross_val_results, axis=1) 
     table_path = out_dir + '/score_table.csv'
     final_table.to_csv(table_path, sep=',', encoding='utf-8')
-    # save fitted model by using pickle
-    pickle.dump(best_logreg, open(out_dir+'/final_model.sav', 'wb'))
+    return best_logreg
 
+
+
+def main(train_data, out_dir):
+    """
+    Save the best model for our dataset
+    
+    Parameters
+    ----------------
+    train_data: csv
+        training data 
+    out_dir: string
+        out directory path
+    
+    Return
+    ---------
+    Saving our best model, but nothing returns
+    """
+    #loading data
+    train_df = pd.read_csv(train_data, encoding="utf-8", index_col=0)
+    X_train, y_train = train_df.drop(columns=['A16']), train_df['A16']
+    #loading best model
+    best_model = finding_best_model(X_train=X_train, y_train=y_train, out_dir=out_dir)
+    # fit our best model
+    best_model.fit(X_train, y_train)
+    # save fitted model by using pickle
+    pickle.dump(best_model, open(out_dir+'/final_model.sav', 'wb'))
+    
 if __name__ == "__main__":
     main(opt['--train_data'],opt['--out_dir'])
 

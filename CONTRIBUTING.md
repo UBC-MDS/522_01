@@ -4,12 +4,20 @@ This outlines are indicated to know the credit card approving factors based on o
 
 There is also a strict no meanness rule. At every step, please be kind and inclusive, even if people are asking not-so-informed questions.
 
+### External Contributors
+
+* Open a Issue to discuss where you think might have problems 
+* You can fork this repo if the problems have been committed by Two of the Members
+* Changing the stuff you think that would be a problem
+* Open PR
+
 ### Prerequisites
 
 Before you make a substantial pull request, you should always file an issue and
 make sure someone from the team agrees that it's a problem. If you've found a
 bug, create an associated issue and illustrate the bug with a minimal 
 [reprex](https://www.tidyverse.org/help/#reprex).
+
 
 ### Pull request process
 

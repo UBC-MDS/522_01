@@ -26,7 +26,22 @@ import pickle
 opt = docopt(__doc__)
 
 def main(trained_model_dir, test_df_dir, out_dir):
-
+    """
+    Using our best model to get the test score table
+    
+    Parameters
+    ---------------
+    trained_model_dir: string
+        path for best training model
+    test_df_dir: string
+        path for test dataset
+    out_dir: string
+        path for output our final score table
+    
+    Return
+    --------------
+        Saving our final test score table, but nothing really returns
+    """
     test_df = pd.read_csv(test_df_dir, encoding="utf-8", index_col=0)
     X_test, y_test = test_df.drop(columns=['A16']), test_df['A16']
 
