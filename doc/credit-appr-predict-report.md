@@ -12,22 +12,9 @@ always_allow_html: yes
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(knitr)
-library(kableExtra)
-library(tidyverse)
-```
 
-```{r load model results, include = FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-test_score_df <- read_csv("../results/test_score_df.csv")
-score_table <- read_csv("../results/score_table.csv")
-# score_table[1,1] <- c('score_type')
-colnames(score_table) <- c('Score', 'Dummy Mean','Dummy SD', 'LR Mean', 'LR SD', 'SVC Mean', 'SVC SD', 'Best SVC Mean', 'Best SVC SD', 'Best LR Mean', 'Best LR SD')
-score_table <- score_table[2:5,]
-score_table$Score <- c('Fit Time', 'Score Time', 'Test Score', 'Train Score')
-```
+
+
 
 # Credit Card Prediction Analysis Report
 
@@ -84,15 +71,17 @@ A more thorough EDA analysis, [linked here](https://github.com/UBC-MDS/Credit_Ap
 
 The EDA determined that none of the features A1-A16 were significantly correlated with eachother (Pearson's correlation). The following figure illustrates this lack of correlation between features in the dataset:
 
-```{r, out.height='250px', out.width='600px', fig.cap='Figure 1. EDA Correlation Plot of Numerical Features', fig.align='center'}
-knitr::include_graphics("../results/matrix.png")
-```
+<div class="figure" style="text-align: center">
+<img src="../results/matrix.png" alt="Figure 1. EDA Correlation Plot of Numerical Features" width="600px" height="250px" />
+<p class="caption">Figure 1. EDA Correlation Plot of Numerical Features</p>
+</div>
 
 The EDA also highlighted the distribution of some features of the dataset. This is illustrated in the figure below:
 
-```{r, out.height='500px', out.width='800px', fig.cap='Figure 2. EDA Distribution of Numeric Features', fig.align='center'}
-knitr::include_graphics("../results/num_distributions.png")
-```
+<div class="figure" style="text-align: center">
+<img src="../results/num_distributions.png" alt="Figure 2. EDA Distribution of Numeric Features" width="800px" height="500px" />
+<p class="caption">Figure 2. EDA Distribution of Numeric Features</p>
+</div>
 
 In addition to the plots above, the EDA generated the following conclusions about the dataset:
 
@@ -110,14 +99,60 @@ The objective of the modeling analysis was to correctly predict whether a credit
 
 These models were evaluated against each other using 5-fold cross-validation. Cross-validation helped determine which model would yield the highest accuracy when scored against unseen test data. A reference “dummy” model was created as a basis for comparison for the Logistic Regression and SVC models. 
 
-The results of the 5-fold cross-validation showed that the Logistic Regression model and the SVC model both perform relatively well, with cross-validation test scores of `r score_table[10,3]` and `r score_table[8,3]` respectively.
+The results of the 5-fold cross-validation showed that the Logistic Regression model and the SVC model both perform relatively well, with cross-validation test scores of NA and NA respectively.
 
-```{r crossvalidation results}
-cross_val_df <- score_table[,1:7]
-  
-knitr::kable(cross_val_df, caption = 'Table 1. 5-Fold Cross Validation Results') |>
-  kableExtra::kable_styling(full_width = FALSE)
-```
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Table 1. 5-Fold Cross Validation Results</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Score </th>
+   <th style="text-align:left;"> Dummy Mean </th>
+   <th style="text-align:left;"> Dummy SD </th>
+   <th style="text-align:left;"> LR Mean </th>
+   <th style="text-align:left;"> LR SD </th>
+   <th style="text-align:left;"> SVC Mean </th>
+   <th style="text-align:left;"> SVC SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fit Time </td>
+   <td style="text-align:left;"> 0.032 </td>
+   <td style="text-align:left;"> 0.004 </td>
+   <td style="text-align:left;"> 0.078 </td>
+   <td style="text-align:left;"> 0.01 </td>
+   <td style="text-align:left;"> 0.056 </td>
+   <td style="text-align:left;"> 0.012 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Score Time </td>
+   <td style="text-align:left;"> 0.018 </td>
+   <td style="text-align:left;"> 0.002 </td>
+   <td style="text-align:left;"> 0.02 </td>
+   <td style="text-align:left;"> 0.002 </td>
+   <td style="text-align:left;"> 0.03 </td>
+   <td style="text-align:left;"> 0.007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Test Score </td>
+   <td style="text-align:left;"> 0.551 </td>
+   <td style="text-align:left;"> 0.004 </td>
+   <td style="text-align:left;"> 0.879 </td>
+   <td style="text-align:left;"> 0.012 </td>
+   <td style="text-align:left;"> 0.857 </td>
+   <td style="text-align:left;"> 0.024 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Train Score </td>
+   <td style="text-align:left;"> 0.551 </td>
+   <td style="text-align:left;"> 0.001 </td>
+   <td style="text-align:left;"> 0.883 </td>
+   <td style="text-align:left;"> 0.006 </td>
+   <td style="text-align:left;"> 0.897 </td>
+   <td style="text-align:left;"> 0.005 </td>
+  </tr>
+</tbody>
+</table>
 
 ### Model Selection with Hyperparameter Optimization
 
@@ -125,12 +160,78 @@ The performance of machine learning models can be improved by optimizing their �
 
 In an attempt to improve the SVC and Logistic Regression model performance, we conducted hyperparameter optimization using a randomized search for the best hyperparameters across a given range of possible values. The results showed that there was no significant improvement in the model’s performance after conducting this optimization.
 
-```{r optimized models table}
-optimized_models <- score_table[, c(1, 2, 3, 4, 5, 6, 7, 10, 11, 8, 9)]
-  
-knitr::kable(optimized_models, caption = 'Table 2. Model Scores Comparison: Pre- & Post-Optimization') |>
-  kableExtra::kable_styling(full_width = FALSE)
-```
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Table 2. Model Scores Comparison: Pre- &amp; Post-Optimization</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Score </th>
+   <th style="text-align:left;"> Dummy Mean </th>
+   <th style="text-align:left;"> Dummy SD </th>
+   <th style="text-align:left;"> LR Mean </th>
+   <th style="text-align:left;"> LR SD </th>
+   <th style="text-align:left;"> SVC Mean </th>
+   <th style="text-align:left;"> SVC SD </th>
+   <th style="text-align:left;"> Best LR Mean </th>
+   <th style="text-align:left;"> Best LR SD </th>
+   <th style="text-align:left;"> Best SVC Mean </th>
+   <th style="text-align:left;"> Best SVC SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fit Time </td>
+   <td style="text-align:left;"> 0.032 </td>
+   <td style="text-align:left;"> 0.004 </td>
+   <td style="text-align:left;"> 0.078 </td>
+   <td style="text-align:left;"> 0.01 </td>
+   <td style="text-align:left;"> 0.056 </td>
+   <td style="text-align:left;"> 0.012 </td>
+   <td style="text-align:left;"> 0.059 </td>
+   <td style="text-align:left;"> 0.006 </td>
+   <td style="text-align:left;"> 0.038 </td>
+   <td style="text-align:left;"> 0.006 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Score Time </td>
+   <td style="text-align:left;"> 0.018 </td>
+   <td style="text-align:left;"> 0.002 </td>
+   <td style="text-align:left;"> 0.02 </td>
+   <td style="text-align:left;"> 0.002 </td>
+   <td style="text-align:left;"> 0.03 </td>
+   <td style="text-align:left;"> 0.007 </td>
+   <td style="text-align:left;"> 0.017 </td>
+   <td style="text-align:left;"> 0.001 </td>
+   <td style="text-align:left;"> 0.022 </td>
+   <td style="text-align:left;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Test Score </td>
+   <td style="text-align:left;"> 0.551 </td>
+   <td style="text-align:left;"> 0.004 </td>
+   <td style="text-align:left;"> 0.879 </td>
+   <td style="text-align:left;"> 0.012 </td>
+   <td style="text-align:left;"> 0.857 </td>
+   <td style="text-align:left;"> 0.024 </td>
+   <td style="text-align:left;"> 0.879 </td>
+   <td style="text-align:left;"> 0.012 </td>
+   <td style="text-align:left;"> 0.87 </td>
+   <td style="text-align:left;"> 0.013 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Train Score </td>
+   <td style="text-align:left;"> 0.551 </td>
+   <td style="text-align:left;"> 0.001 </td>
+   <td style="text-align:left;"> 0.883 </td>
+   <td style="text-align:left;"> 0.006 </td>
+   <td style="text-align:left;"> 0.897 </td>
+   <td style="text-align:left;"> 0.005 </td>
+   <td style="text-align:left;"> 0.883 </td>
+   <td style="text-align:left;"> 0.006 </td>
+   <td style="text-align:left;"> 0.971 </td>
+   <td style="text-align:left;"> 0.005 </td>
+  </tr>
+</tbody>
+</table>
 
 The Logistic Regression model with default parameters had the highest cross-validation accuracy across all tested models. As a result, it was chosen as the final model.
 
@@ -138,7 +239,7 @@ The Logistic Regression model with default parameters had the highest cross-vali
 
 ## Summary
 
-Applying the fitted model to unseen test data yielded an accuracy of `r round(test_score_df[1,1], 3)`. This score was relatively good, but a bank or credit card company may need more certainty in any model they use to approve or deny credit cards to applicants.
+Applying the fitted model to unseen test data yielded an accuracy of 0.884. This score was relatively good, but a bank or credit card company may need more certainty in any model they use to approve or deny credit cards to applicants.
 
 ## Limitations
 
