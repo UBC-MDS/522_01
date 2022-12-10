@@ -93,14 +93,14 @@ In order to run the image you need to install Docker Desktop.
 
 Then from the folder where you have cloned project repository run in terminal:
 
-    ``` 
+     
     docker run --rm -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction all
-    ```
+    
 In order to clean the output from the above command run:
 
-    ``` 
+    
     docker run --rm -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction clean
-    ```
+    
 
 ## Makefile Dependencies Graph
 
