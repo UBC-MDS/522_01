@@ -59,7 +59,9 @@ The final analysis report can be found [here](https://github.com/UBC-MDS/Credit_
 
 ## Usage
 
-There are two method to replicate this analysis:
+There are two methods to replicate this analysis using docker and without using docker:
+
+### Method 1 makefile
 
 1. Clone this repo, following the [cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) documentation if requried.
 
@@ -67,8 +69,6 @@ There are two method to replicate this analysis:
 
 3. Install the [dependencies](#Dependencies) listed below. 
     - Optionally, download, create, and activate the environment file (.yaml file) provided in the root directory of the repo.
-
-### Method 1
 
 4. Run the makefile from the terminal/command line using the prompt below. The makefile automates every step of the data analysis pipeline.
     - Link to the makefile: [Makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/Makefile)
@@ -83,42 +83,8 @@ There are two method to replicate this analysis:
 
     - `make all`
 
-### Method 2
 
-4. Downloading raw data:
-
-    ``` 
-    python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data --out_path=data/raw
-    ```
-
-5. Cleaning, scaling and spliting data:
-
-    ```
-    python src/pre_process_crx.py --input=data/raw/crx.csv --out_dir=data/processed
-    ```
-6. Making Exploratory Data Analysis (EDA):
-
-    ```
-    python src/eda_script.py --input=data/processed/train_df.csv --output=results
-    ```
-7. Fitting, training and tuning model:
-
-    ```
-    python src/best_model_credit_card.py --train_data='data/processed/train_df.csv' --out_dir='results'
-    ```
-8. Testing the score of the model:
-
-    ```
-    python src/model_test_script.py --trained_model_dir=results/final_model.sav --test_df_dir=data/processed/train_df.csv --out_dir='results'
-    ```
-9. Render final report:
-
-    ```
-    Rscript -e "rmarkdown::render('doc/credit-appr-predict-report.Rmd', output_format = 'html_document')"
-    ```
-
-
-### Usage with Docker
+### Method 2 Usage with Docker
 
 The image for rendering the results of this project resides at:
 [Docker Hub](https://hub.docker.com/repository/docker/creditapprovalprediction/credit_approval_prediction)
@@ -126,15 +92,26 @@ The image for rendering the results of this project resides at:
 In order to run the image you need to install Docker Desktop.  
 
 Then from the folder where you have cloned project repository run in terminal:
-
-    ``` 
+     
     docker run --rm -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction all
-    ```
+    
 In order to clean the output from the above command run:
 
-    ``` 
+    
     docker run --rm -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction clean
-    ```
+    
+#### For mac m1/m2 users to run dockerfile
+from the folder where you have cloned project repository run in terminal:
+
+    
+    docker run --rm --platform linux/amd64 -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction all
+    
+    
+In order to clean the output from the above command run:
+    
+    
+    docker run --rm --platform linux/amd64 -v /$(pwd):/home/credit_approval_prediction creditapprovalprediction/credit_approval_prediction make -C /home/credit_approval_prediction clean
+    
 
 ## Makefile Dependencies Graph
 
@@ -170,4 +147,8 @@ The license information can be viewed in the `LICENSE` file found in the root di
 
 ## Attribution
 
-The automated scripting files in src/ are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master/src)
+We have used pre-developed tools to build out our analysis and the automated scripting files are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master)
+
+## References
+
+we have used researches and technology resources listed in the references file [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/references.bib)
