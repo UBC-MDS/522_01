@@ -145,30 +145,10 @@ The Credit Approval materials here are licensed under the MIT License and the Cr
 
 The license information can be viewed in the `LICENSE` file found in the root directory of this repository.
 
+## Attribution
+
+The automated scripting files in src/ are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master/src)
+
 ## References
 
-de Jonge, Edwin. 2018. Docopt: Command-Line Interface Specification Language. https://CRAN.R-project.org/package=docopt.
-
-Ippolito, Pier Paolo. 2019. “Hyperparameters Optimization.” Medium. https://towardsdatascience.com/hyperparameters-optimization-526348bb8e2d.
-
-Keleshev, Vladimir. 2014. Docopt: Command-Line Interface Description Language. https://github.com/docopt/docopt.
-
-Lambarena, Melissa. 2021. “How Do Credit Card Companies Make Money?” NerdWallet. https://www.nerdwallet.com/article/credit-cards/credit-card-companies-money.
-
-Liu, Bohan, Bo Yuan, and Wenhuang Liu. 2008. “Classification and Dimension Reduction in Bank Credit Scoring System.” In ISNN.
-
-McKinney, Wes. 2010. “Data Structures for Statistical Computing in Python.” In Proceedings of the 9th Python in Science Conference, edited by Stéfan van der Walt and Jarrod Millman, 51–56.
-
-Pedregosa, Fabian, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, et al. 2011. “Scikit-Learn: Machine Learning in Python.” Journal of Machine Learning Research 12 (Oct): 2825–30.
-
-R Core Team. 2019. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org.
-
-Sievert, Jacob VanderPlas AND Brian E. Granger AND Jeffrey Heer AND Dominik Moritz AND Kanit Wongsuphasawat AND Arvind Satyanarayan AND Eitan Lees AND Ilia Timofeev AND Ben Welsh AND Scott. 2018. “Altair: Interactive Statistical Visualizations for Python.” The Journal of Open Source Software 3 (32). http://idl.cs.washington.edu/papers/altair.
-
-Van Rossum, Guido. 2020. The Python Library Reference, Release 3.8.2. Python Software Foundation.
-
-Van Rossum, Guido, and Fred L. Drake. 2009. Python 3 Reference Manual. Scotts Valley, CA: CreateSpace.
-
-Wickham, Hadley. 2017. Tidyverse: Easily Install and Load the ’Tidyverse’. https://CRAN.R-project.org/package=tidyverse.
-
-Xie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research in R.” In Implementing Reproducible Computational Research, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman; Hall/CRC. http://www.crcpress.com/product/isbn/9781466561595.
+we have used researches and technology resources listed in the references file [here](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/doc/references.bib)
