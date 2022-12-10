@@ -118,6 +118,10 @@ There are two method to replicate this analysis:
     ```
 
 
+## Makefile Dependencies Graph
+
+![makefile](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/014b7405e9f88d85d87cf94eb2b099ec94611d55/Makefile.png)
+
 ## Dependencies
 
 For a comprehensive list of required packages, refer to the [credit-env.yaml](https://github.com/UBC-MDS/Credit_Approval_Prediction/blob/main/credit-env.yaml) file saved in the root directory of this repository. 
