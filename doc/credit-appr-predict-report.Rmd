@@ -115,7 +115,7 @@ The results of the 5-fold cross-validation showed that the Logistic Regression m
 ```{r crossvalidation results}
 cross_val_df <- score_table[,1:7]
   
-knitr::kable(cross_val_df, caption = 'Table 1. 5-Fold Cross Validation Results') |>
+knitr::kable(cross_val_df, caption = 'Table 1. 5-Fold Cross Validation Results') %>%
   kableExtra::kable_styling(full_width = FALSE)
 ```
 
@@ -127,8 +127,8 @@ In an attempt to improve the SVC and Logistic Regression model performance, we c
 
 ```{r optimized models table}
 optimized_models <- score_table[, c(1, 2, 3, 4, 5, 6, 7, 10, 11, 8, 9)]
-  
-knitr::kable(optimized_models, caption = 'Table 2. Model Scores Comparison: Pre- & Post-Optimization') |>
+ 
+knitr::kable(optimized_models, caption = 'Table 2. Model Scores Comparison: Pre- & Post-Optimization') %>%
   kableExtra::kable_styling(full_width = FALSE)
 ```
 
