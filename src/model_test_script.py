@@ -11,7 +11,7 @@ Options:
 --out_dir=<out_dir>     path (NOT including file name) to where the model results should be saved
 """ 
 
-#import necessary packages
+# Import necessary packages
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -25,6 +25,7 @@ import pickle
 
 opt = docopt(__doc__)
 
+# Create the main function
 def main(trained_model_dir, test_df_dir, out_dir):
     """
     Using our best model to get the test score table
@@ -42,13 +43,16 @@ def main(trained_model_dir, test_df_dir, out_dir):
     --------------
         Saving our final test score table, but nothing really returns
     """
+    # Read in the test data and split X and y
     test_df = pd.read_csv(test_df_dir, encoding="utf-8", index_col=0)
     X_test, y_test = test_df.drop(columns=['A16']), test_df['A16']
 
+    # Load the fitted model, score on test data, save score to dataframe
     fitted_model = pickle.load(open(trained_model_dir,'rb'))
     test_score = fitted_model.score(X_test, y_test)
     test_score_df = pd.DataFrame([[test_score]], columns=['test_score'])
 
+    # If the out directory doesn't exist, create and save the output
     try:
         test_score_df.to_csv(out_dir + "/test_score_df.csv", index=False)
     except:
