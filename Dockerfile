@@ -47,19 +47,26 @@ RUN pip install imbalanced-learn==0.9.* \
         selenium==4.2.* \
         xgboost==1.7.*
 
-# set environment path to R packages
-ENV LD_LIBRARY_PATH /R/library/:${LD_LIBRARY_PATH}
-
 # Install R packages
 RUN apt-get install -y wget r-base r-base-dev
+
+# Install R dependencies
+RUN apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev libfontconfig1-dev
+
 RUN Rscript -e "install.packages('knitr')" 
 RUN Rscript -e "install.packages('rmarkdown')"
 RUN Rscript -e "install.packages('kableExtra')"
 RUN Rscript -e "install.packages('tidyverse')"
-RUN Rscript -e "install.packages('kableextra')"
+
+# RUN Rscript -e "install.packages('kableExtra', repos='https://cran.rstudio.com/')"
 
 
 RUN pip install ipython \
             pickle5
 
 RUN python -m pip install docopt-ng
+
+RUN apt-get update --fix-missing \
+    && apt-get install -y \
+        pandoc-citeproc
+
