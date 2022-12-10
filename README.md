@@ -147,7 +147,7 @@ The license information can be viewed in the `LICENSE` file found in the root di
 
 ## Attribution
 
-The automated scripting files in src/ are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master/src)
+We have used pre-developed tools to build out our analysis and the automated scripting files are based on the scripts created by Tiffany Timbers in 2019, available [here](https://github.com/ttimbers/breast_cancer_predictor/tree/master)
 
 ## References
 
